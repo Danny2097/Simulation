@@ -40,3 +40,8 @@ tmp/
 local.properties
 .loadpath
 .factorypath
+################################
+#Application
+################################
+simulation/.gitignore
+
