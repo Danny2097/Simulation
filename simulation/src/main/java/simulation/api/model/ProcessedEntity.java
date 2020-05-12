@@ -60,19 +60,19 @@ public class ProcessedEntity implements Serializable {
 	}
 
 	@JsonProperty("id")
-	@ApiModelProperty(notes = "Entity Id", example = "12345", required = true, position = 1)
+	@ApiModelProperty(notes = "Entity Id", example = "\"12345\"", required = true, position = 1)
 	private String id;
 
 	@JsonProperty("entityType")
-	@ApiModelProperty(notes = "type of entity", example = "review", required = true, position = 2)
+	@ApiModelProperty(notes = "type of entity", example = "\"review\"", required = true, position = 2)
 	private String entityType;
 
 	@JsonProperty("fieldName")
-	@ApiModelProperty(notes = "name of field", example = "comment", required = true, position = 3)
+	@ApiModelProperty(notes = "name of field", example = "\"comment\"", required = true, position = 3)
 	private String fieldName;
 
 	@JsonProperty("text")
-	@ApiModelProperty(notes = "text", example = "Do I really need to provide an example?", required = true, position = 4)
+	@ApiModelProperty(notes = "text", example = "\"Do I really need to provide an example?\"", required = true, position = 4)
 	private String text;
 
 	@JsonProperty("nlpFeatures")
@@ -80,11 +80,11 @@ public class ProcessedEntity implements Serializable {
 	private List<String> nlpFeatures;
 
 	@JsonProperty("workflowName")
-	@ApiModelProperty(notes = "The name of workflow", example = "product_review_emotion", required = true, position = 6)
+	@ApiModelProperty(notes = "The name of workflow", example = "\"product_review_emotion\"", required = true, position = 6)
 	private String workflowName;
 
 	@JsonProperty("result")
-	@ApiModelProperty(notes = "Result from proceesing of the entity by the workflow. Note this has to be a String in Json format", example = "product_review_emotion", required = true, position = 7)
+	@ApiModelProperty(notes = "\"Result from proceesing of the entity by the workflow. Note this has to be a String in Json format\"", example = "product_review_emotion", required = true, position = 7)
 	private String result;
 
 	@JsonProperty("id")

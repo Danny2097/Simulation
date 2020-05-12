@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Delete {
 
 	@JsonProperty("id")
-	@ApiModelProperty(notes = "Entity Id", example = "12345", required = true, position = 1)
+	@ApiModelProperty(notes = "Entity Id", example = "\"12345\"", required = true, position = 1)
 	protected String id;
 
 	public String getId() {

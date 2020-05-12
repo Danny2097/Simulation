@@ -18,27 +18,27 @@ public class Job implements Serializable {
 	private static final long serialVersionUID = 808085401519531528L;
 
 	@JsonProperty("id")
-    @ApiModelProperty(notes = "Entity Id", example = "12345", required = true, position = 1)
+    @ApiModelProperty(notes = "Entity Id", example = "\"12345\"", required = true, position = 1)
 	private String id;
 	
 	@JsonProperty("entityType")
-	@ApiModelProperty(notes = "type of entity", example = "review", required = true, position = 2)
+	@ApiModelProperty(notes = "type of entity", example = "\"review\"", required = true, position = 2)
 	private String entityType;
 	
 	@JsonProperty("fieldName")
-	@ApiModelProperty(notes = "name of field", example = "comment", required = true, position = 3)
+	@ApiModelProperty(notes = "name of field", example = "\"comment\"", required = true, position = 3)
 	private String fieldName;
 	
 	@JsonProperty("text")
-	@ApiModelProperty(notes = "text", example = "Do I really need to provide an example?", required = true, position = 4)
+	@ApiModelProperty(notes = "text", example = "\"Do I really need to provide an example?\"", required = true, position = 4)
 	private String text;
 	
 	@JsonProperty("nlpFeatures")
-	@ApiModelProperty(notes = "NLP features", example = "emotion", required = true, position = 5)
+	@ApiModelProperty(notes = "NLP features", example = "\"emotion\"", required = true, position = 5)
 	private String nlpFeatures;
 	
 	@JsonProperty("workflowName")
-	@ApiModelProperty(notes = "The name of workflow", example = "product_review_emotion", required = true, position = 6)
+	@ApiModelProperty(notes = "The name of workflow", example = "\"product_review_emotion\"", required = true, position = 6)
 	private String workflowName;
 
 	@JsonProperty("id")
