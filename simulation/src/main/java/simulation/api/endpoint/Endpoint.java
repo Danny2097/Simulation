@@ -55,15 +55,17 @@ public class Endpoint {
 
 		protected Logger logger = LogManager.getLogger(Config.class);
 
-		@Value("${elasticsearch.host:localhost}")
+		@Value("${elasticsearch.host}")
 		private String elasticsearchHost;
 
-		@Value("${elasticsearch.port:9200}")
+		@Value("${elasticsearch.port}")
 		private int elasticsearchPort;
 
+		
 		@Bean(destroyMethod = "close")
 		RestHighLevelClient client() {
 
+			//logger.info(elasticsearchHost + ":" + elasticsearchPort);
 			logger.info("Attempting to create a High Level Rest Client");
 
 			ClientConfiguration clientConfiguration = ClientConfiguration.builder()
@@ -105,7 +107,7 @@ public class Endpoint {
 
 			@Override
 			public void onResponse(IndexResponse response) {
-				logger.info("Document (id: " + response.getId() + " has been " + response.getResult());
+				logger.info("Document id: " + response.getId() + " has been " + response.getResult());
 
 			}
 
