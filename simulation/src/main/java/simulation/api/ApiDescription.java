@@ -3,8 +3,8 @@ package simulation.api;
 
 public class ApiDescription {
 	
-	public static final String title = "Indexing Interface";
-	public static final String description = "Interface for Indexing in NLAE";
+	public static final String title = "NLAE Simulation";
+	public static final String description = "NLAE simulation";
 	public static final String version  = "1.0.0";
 	//public static final String termsOfServiceUrl = "https://url.to.TOS.com";
 	public static final String contactName= "Edge Hill Univerity";

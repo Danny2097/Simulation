@@ -1,6 +1,9 @@
 package simulation.api.endpoint;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,7 +37,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.swagger.annotations.ApiOperation;
@@ -61,30 +63,49 @@ public class Endpoint {
 		@Value("${elasticsearch.port}")
 		private int elasticsearchPort;
 
-		
 		@Bean(destroyMethod = "close")
 		RestHighLevelClient client() {
-
-			//logger.info(elasticsearchHost + ":" + elasticsearchPort);
+			int count = 0;
 			logger.info("Attempting to create a High Level Rest Client");
 
-			ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-					.connectedTo(elasticsearchHost + ":" + elasticsearchPort).build();
+			while (count < 5) {
+				try {
+					Thread.sleep(5000);
 
-			RestHighLevelClient client = RestClients.create(clientConfiguration).rest();
+					boolean flag = pingHost(elasticsearchHost, elasticsearchPort, 5000);
 
-			try {
-				Boolean ping = client.ping();
-				if (ping) {
-					logger.info("Client has successfully connected to Elasticsearch");
+					if (flag == true) {
+						ClientConfiguration clientConfiguration = ClientConfiguration.builder()
+								.connectedTo(elasticsearchHost + ":" + elasticsearchPort).build();
+
+						logger.info("Client successfully created");
+
+						return RestClients.create(clientConfiguration).rest();
+
+					} else {
+
+						count = count + 1;
+
+					}
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 
-			} catch (Exception e) {
-				logger.error("Error connecting to Elasticsearch, please check your configurations");
-				// System.exit(0);
 			}
 
-			return RestClients.create(clientConfiguration).rest();
+			logger.error("Exiting....After several attempts I'm unable to establish connection to Elasticsearch");
+			System.exit(0);
+			return null;
+		}
+
+		public static boolean pingHost(String host, int port, int timeout) {
+			try (Socket socket = new Socket()) {
+				socket.connect(new InetSocketAddress(host, port), timeout);
+				return true;
+			} catch (IOException e) {
+				return false;
+			}
 		}
 
 	}
@@ -126,9 +147,8 @@ public class Endpoint {
 	@ApiOperation("Retrieve entities from Text Analytics Backend")
 	@Async
 	public Set<String> query(@RequestBody Query query) {
-		//TODO Modify this code to get Processed things
-		
-		
+		// TODO Modify this code to get Processed things
+
 //				// Bool Query
 //				BoolQueryBuilder boolQuery = new BoolQueryBuilder();
 //				boolQuery.must(new MatchQueryBuilder("entityType", query.getEntityType()));
@@ -173,9 +193,7 @@ public class Endpoint {
 //				return jobs;
 //			}
 //		
-		
-		
-		
+
 		Set<String> x = new HashSet<>();
 		return x;
 	}
@@ -197,12 +215,12 @@ public class Endpoint {
 		listener = new ActionListener<BulkByScrollResponse>() {
 			@Override
 			public void onResponse(BulkByScrollResponse bulkResponse) {
-				logger.info("deleted sucessfully");
+				logger.info(bulkResponse.getStatus().getDeleted());
 			}
 
 			@Override
 			public void onFailure(Exception e) {
-				logger.error("error deleting");
+				logger.error(e);
 			}
 		};
 
