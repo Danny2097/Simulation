@@ -129,4 +129,4 @@ The product of this will result in the creation of two containers with the names
 
 ## Contact
 
-Coming soon.
+Dan at `campbeld@edgehill.ac.uk`
