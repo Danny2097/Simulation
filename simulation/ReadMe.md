@@ -1,10 +1,6 @@
 # Natural Language Analytics Engine : Simulation
 
-
-
 Simulation of the NLAE in Typhon.
-
-
 
 ## Features
 
@@ -15,12 +11,9 @@ There are 4 Endpoints group into two categories:
   - **/query** : request entities that have been processed by the Text Analytics Engine 
   - **/delete** : deletes object (document) from the Text Analytics Engine store.
 
-
-
-
 ## Models
 
-The models associated with the **Typhon Endpoints** are presented below.
+The models associated with the **Endpoints** are presented below.
 
 ### Process
 
@@ -132,7 +125,7 @@ docker-compose up --build --force-recreate -d
 The product of this will result in the creation of two containers with the names `simulation` and `elasticsearch`
 
 
-**NOTE : ** Please allow for 40 - 60 seconds for the Elasticsearch cluster and Simulation Api to load and configure themselves before using. This is a result of a delay in the exposure of the host and port Elasticsearch is bound to when cluster is starting. This then requires the API to essentially wait so it can create a client.   
+**NOTE :** Please allow for upto **40 - 60 seconds** for the Elasticsearch cluster and Simulation Api to load and configure themselves before using. This is a result of a delay in the exposure of the host and port that Elasticsearch is bound to when cluster is starting. This then requires the API to essentially wait so it can create a client.   
 
 ## Contact
 
