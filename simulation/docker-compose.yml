@@ -4,6 +4,7 @@ services:
 
   elasticsearch: 
     container_name: elasticsearch
+    restart: always
     environment: 
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
