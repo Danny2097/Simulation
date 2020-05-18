@@ -65,20 +65,23 @@ public class Endpoint {
 
 		@Bean(destroyMethod = "close")
 		RestHighLevelClient client() {
+			
 			int count = 0;
+			
 			logger.info("Attempting to create a High Level Rest Client");
 
-			while (count < 5) {
+			while (count < 20) {
+				
 				try {
-					Thread.sleep(5000);
 
 					boolean flag = pingHost(elasticsearchHost, elasticsearchPort, 5000);
 
 					if (flag == true) {
+						
 						ClientConfiguration clientConfiguration = ClientConfiguration.builder()
 								.connectedTo(elasticsearchHost + ":" + elasticsearchPort).build();
 
-						logger.info("Client successfully created");
+						logger.info("Elasticsearch Client has been successfully created");
 
 						return RestClients.create(clientConfiguration).rest();
 
@@ -88,14 +91,19 @@ public class Endpoint {
 
 					}
 
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+					Thread.sleep(5000);
 
+				} catch (InterruptedException e) {
+				
+					e.printStackTrace();
+				
+				}
 			}
 
 			logger.error("Exiting....After several attempts I'm unable to establish connection to Elasticsearch");
+			
 			System.exit(0);
+		
 			return null;
 		}
 
