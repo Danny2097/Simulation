@@ -25,7 +25,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: List directory
+    - name: change directory
+      run: cd simulation
+    - name: list dir
       run: ls
     - name: Build with Maven
       run: mvn clean package springboot:repackage
