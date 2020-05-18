@@ -8,26 +8,14 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    paths:
-      - 'simulation/*'  
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-    env:
-      working-dir: ./simulation
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: change directory
-      run: cd simulation
-    - name: list dir
-      run: ls
     - name: Build with Maven
-      run: mvn clean package springboot:repackage
+      run: mvn -f simulation clean package springboot:repackage
