@@ -42,4 +42,5 @@ volumes:
 
 networks:
   nlae:
+    name: nlae
     driver: bridge
