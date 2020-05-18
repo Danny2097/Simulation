@@ -92,12 +92,12 @@ Below is the current list of `NlpTaskTypes` supported in Typhon.
 - __**UI Endpoint Documentation**__ :
   More inforamtion see `<hostname>:port/swagger-ui.html` when deployed.
 
-- __**Open API Specification**__ : More inforamtion see `<hostname>:port/v2/api-docs` when deployed.
+- __**Open API Specification**__ : More information see `<hostname>:port/v2/api-docs` when deployed.
 
 
 ## Build
 
-To build the simulation package navigate to `.../Simulation/simulation` directory and run the following command.
+To build the api package navigate to `.../Simulation/simulation` directory and run the following command.
 
 ```
 mvn clean package spring-boot:repackage
