@@ -107,9 +107,12 @@ If successful the command will generate a `NLAE-Simulation.jar` within the `.../
 
 ## Deployment
 
-Below is an example docker-compose used to deploy the simulation:
+Ensure you have `docker` and `docker-compose` installed on your system and you have increased the `vm.max_map_count` to at least `262144`. For information on how to increase `vm.max_map_count` on your system visit [link.](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_set_vm_max_map_count_to_at_least_262144)
+
+
 
 **Docker-compose.yml example**
+Below is an example docker-compose used to deploy the simulation:
 
 ```yml
 version: "2.2"
@@ -161,9 +164,9 @@ networks:
 
 ```
 
+---
 
-
-Simply run the one of the following commands:
+Simply create a `docker-compose.yml` file on your system. Using terminal navigate to the directory where the `docker-compose.yml` file is stored and  run the one of the following commands:
 
 For immediate console output from the containers
 
