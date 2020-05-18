@@ -90,7 +90,7 @@ Below is the current list of `NlpTaskTypes` supported in Typhon.
 ## Documentation
 
 - __**UI Endpoint Documentation**__ :
-More inforamtion see `<hostname>:port/swagger-ui.html` when deployed.
+  More inforamtion see `<hostname>:port/swagger-ui.html` when deployed.
 
 - __**Open API Specification**__ : More inforamtion see `<hostname>:port/v2/api-docs` when deployed.
 
@@ -104,8 +104,61 @@ mvn clean package spring-boot:repackage
 ```
 
 If successful the command will generate a `NLAE-Simulation.jar` within the `.../Simulation/simulation/target/` directory.
- 
+
 ## Deployment
+
+Below is an example docker-compose used to deploy the simulation:
+
+**Docker-compose.yml example**
+
+```yml
+version: "2.2"
+
+services:
+
+  elasticsearch:
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:6.8.1"
+    networks:
+      nlae:
+        aliases:
+          - elasticsearch
+    ports:
+      - "9200:9200"
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1
+    volumes:
+      - "esdata1:/usr/share/elasticsearch/data"
+
+  simulation:
+    image: "danny2097/nlae-simulation:latest"
+    container_name: simulation
+    depends_on:
+      - elasticsearch
+    networks:
+      nlae:
+        aliases:
+          - nlp
+    ports:
+      - "8080:8080"
+      
+volumes:
+  esdata1:
+    driver: local
+
+networks:
+  nlae:
+    driver: bridge
+```
+
+
 
 Simply run the one of the following commands:
 
