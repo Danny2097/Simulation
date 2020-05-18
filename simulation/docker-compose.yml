@@ -31,7 +31,7 @@ services:
     networks:
       nlae:
         aliases:
-          - elasticsearch
+          - nlp
     ports:
       - "8080:8080"
 
